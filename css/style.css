@@ -1,0 +1,174 @@
+
+body {
+  font-family: helvetica, arial;
+  font-size: 36pt;
+  background-color: #FFF;
+}
+#menu {
+  position: absolute;
+  width: 340px;
+  height: 100%;
+  top: 0px;
+  left: -341px;
+  z-index: 1;
+  background-color: rgba(250,250,250,0.75);
+}
+
+.toggle__button {
+  position: absolute;
+  top: 0px;
+  left: 341px;
+  z-index: 100;
+  background-color: rgba(200,200,200,0.9);
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+}
+
+#lockSearch {
+  height: 20px;
+  width: 20px;
+}
+
+#musicOn {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+#nightModeOn {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.birthYear {
+  font-size: 17pt;
+  color: #888888;
+  line-height: 12px;
+}
+
+#year {
+  font-family: helvetica, arial;
+  font-size: 70pt;
+  color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+svg {
+  z-index: 10;
+}
+
+#memberDetails {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 36px;
+  line-height:
+}
+
+#timeNavigation {
+  position: absolute;
+  top: 0;
+  left: -895px;
+  width: 900px;
+  padding: 10px;
+  padding-left: 30px;
+  border-right: 10px solid #EEE;
+}
+
+#timeline {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+#feed {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  font-size: 16pt;
+  color: #999999;
+}
+
+#search {
+  opacity: 0.5;
+  margin: 0 0 0 10;
+  width: 91%;
+}
+
+ul {
+  list-style: none;
+}
+
+rect {
+  fill: none;
+  pointer-events: all;
+}
+
+.node {
+  fill: #39F;
+}
+
+.cursor {
+  fill: none;
+  stroke: brown;
+  pointer-events: none;
+}
+
+.link {
+  stroke: #999;
+}
+
+.slider {
+  width: 100%;
+}
+
+#timeNavigation {
+  left: 0;
+}
+
+.options {
+  padding: 0 0 0 12px;
+}
+
+.options__label {
+  padding: 2px 0 0 0;
+}
+
+.time__button {
+  display: block;
+  height: 40px;
+  width: 90%;
+  margin: 3px;
+}
+
+.view__button {
+  display: block;
+  height: 75px;
+  width: 90%;
+  margin: 3px;
+}
+
+.time {
+  margin: 10px 0 10px 0;
+  text-align: center;
+}
+
+.views {
+  margin: 10px 0 10px 0;
+  text-align: center;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;

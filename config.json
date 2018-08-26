@@ -1,0 +1,8 @@
+{
+  "data": "data/familyData.json",
+  "filter": "",
+  "startYear": 2014,
+  "endYear": 2014,
+  "speed": 100,
+  "debug": true
+}
