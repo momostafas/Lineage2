@@ -5,6 +5,7 @@
          "x":-100.95037753198245,
          "y":1011.2394873463124,
          "name":"sootyai",
+         "linkCount": 3,
          "twitter":"LshB3LS5RhmxiwsKM",
          "username":"sootyai",
          "size":1.4377736597463104,
@@ -26,6 +27,7 @@
          "x":-154.4534136908829,
          "y":1000.6093014948341,
          "name":"[ROOM]yolobot",
+         "linkCount": 3,
          "twitter":"yolobot",
          "size":1.4337860552416564,
          "color":"#4678c9",
@@ -47,6 +49,7 @@
          "x":-115.43416729768133,
          "y":1046.940044514944,
          "name":"admin",
+         "linkCount": 3,
          "twitter":"2vojykz3vwGW6oHtD",
          "username":"admin",
          "size":1.9837733197593728,
@@ -69,6 +72,7 @@
          "x":172.78940194601796,
          "y":185.53003693991297,
          "name":"amgad",
+         "linkCount": 3,
          "twitter":"myJv9dmez3q7fuvJn",
          "username":"amgad",
          "size":1.4216141127031423,
@@ -91,6 +95,7 @@
          "x":-100.12605071079746,
          "y":1041.8077874902356,
          "name":"adel",
+         "linkCount": 3,
          "twitter":"aoQtzRY4DBqQHfh83",
          "username":"adel",
          "size":1.1880617066422055,
@@ -113,6 +118,7 @@
          "x":-143.69963068019734,
          "y":1095.9513352810447,
          "name":"sarah",
+         "linkCount": 3,
          "twitter":"HqfhhFFwhdbrJ4SE3",
          "username":"sarah",
          "size":1.9487350985150513,
@@ -135,6 +141,7 @@
          "x":193.51591622096856,
          "y":-184.23814355055617,
          "name":"maryam",
+         "linkCount": 3,
          "twitter":"C3zQumr5wpdNJb9c9",
          "username":"maryam",
          "size":1.3015515372387356,
@@ -157,6 +164,7 @@
          "x":-127.08400646225041,
          "y":1024.2371033012923,
          "name":"SurveyBot",
+         "linkCount": 3,
          "twitter":"CLiB4hDWjYkgN2Zav",
          "username":"SurveyBot",
          "size":1.4336543717516936,
@@ -179,6 +187,7 @@
          "x":-127.35977125386022,
          "y":1063.9631156318885,
          "name":"player",
+         "linkCount": 3,
          "twitter":"ix2qN46YgFQYYqMoL",
          "username":"player",
          "size":1.2947839292064576,
@@ -201,6 +210,7 @@
          "x":-101.16928465431374,
          "y":1084.295490048529,
          "name":"[ROOM]GENERAL",
+         "linkCount": 3,
          "twitter":"GENERAL",
          "size":1.913388628875959,
          "color":"#4678c9",
@@ -222,6 +232,7 @@
          "x":-165.97223363011233,
          "y":1051.6505445704715,
          "name":"player1",
+         "linkCount": 3,
          "twitter":"HjHwGNQguWtG3zz4K",
          "username":"player1",
          "size":1.7358377854842457,
@@ -269,6 +280,7 @@
          "relation":"mother",
          "target":"yolobot",
          "color":"#4678c9",
+         "time":"-400",
          "count":{  
             "POSITIVE":0,
             "NEGATIVE":0,
@@ -286,6 +298,7 @@
          "relation":"mother",
          "target":"yolobot",
          "color":"#4678c9",
+         "time":"-300",
          "count":{  
             "POSITIVE":0,
             "NEGATIVE":0,
@@ -303,6 +316,7 @@
          "relation":"mother",
          "target":"yolobot",
          "color":"#4678c9",
+         "time":"-200",
          "count":{  
             "POSITIVE":0,
             "NEGATIVE":0,
@@ -315,20 +329,21 @@
          }
       },
       {  
-         "id":"myJv9dmez3q7fuvJn_aoQtzRY4DBqQHfh83",
-         "source":"myJv9dmez3q7fuvJn",
+         "id":"2vojykz3vwGW6oHtD_yolobot",
+         "source":"2vojykz3vwGW6oHtD",
          "relation":"mother",
-         "target":"aoQtzRY4DBqQHfh83",
-         "color":"#FF0000",
+         "target":"yolobot",
+         "color":"#4678c9",
+         "time":"-150",
          "count":{  
-            "POSITIVE":0,
+            "POSITIVE":1,
             "NEGATIVE":1,
-            "NEUTRAL":0
+            "NEUTRAL":3
          },
          "MaxSentiment":{  
-            "count":1,
-            "sentiment":"NEGATIVE",
-            "color":"#FF0000"
+            "count":3,
+            "sentiment":"NEUTRAL",
+            "color":"#4678c9"
          }
       },
       {  
@@ -337,6 +352,7 @@
          "relation":"mother",
          "target":"C3zQumr5wpdNJb9c9",
          "color":"#4678c9",
+         "time":"0",
          "count":{  
             "POSITIVE":1,
             "NEGATIVE":1,
@@ -354,6 +370,7 @@
          "relation":"mother",
          "target":"CLiB4hDWjYkgN2Zav",
          "color":"lightgreen",
+         "time":"100",
          "count":{  
             "POSITIVE":1,
             "NEGATIVE":0,
@@ -371,6 +388,7 @@
          "relation":"mother",
          "target":"myJv9dmez3q7fuvJn",
          "color":"lightgreen",
+         "time":"200",
          "count":{  
             "POSITIVE":1,
             "NEGATIVE":0,
@@ -388,6 +406,7 @@
          "relation":"mother",
          "target":"HqfhhFFwhdbrJ4SE3",
          "color":"#FF0000",
+         "time":"300",
          "count":{  
             "POSITIVE":0,
             "NEGATIVE":1,
@@ -405,6 +424,7 @@
          "relation":"mother",
          "target":"yolobot",
          "color":"#4678c9",
+         "time":"400",
          "count":{  
             "POSITIVE":0,
             "NEGATIVE":0,
@@ -422,6 +442,7 @@
          "relation":"mother",
          "target":"GENERAL",
          "color":"#4678c9",
+         "time":"500",
          "count":{  
             "POSITIVE":0,
             "NEGATIVE":0,
@@ -433,5 +454,10 @@
             "color":"#4678c9"
          }
       }
-   ]
+   ],
+   "timeline_nodes":[{
+      "id":"[1]LshB3LS5RhmxiwsKM",
+      "x":-100.95037753198245,
+      "y":1011.2394873463124
+   }]
 }

@@ -20,8 +20,8 @@ function Lineage() {
 
   var year = 1800;
 
-  var CLUSTER_COL_SPACING = 10;
-  var CLUSTER_ROW_SPACING = 40;
+  var CLUSTER_COL_SPACING = 0;
+  var CLUSTER_ROW_SPACING = 0;
 
   var TIMELINE_SPEED = 0.8;
 
@@ -45,7 +45,6 @@ function Lineage() {
       clusters = [],
       data = {},
       originalData = {};
-
   var canvas = d3.select("canvas")
       .attr("id", "screen")
       .attr("width", width)
@@ -119,7 +118,7 @@ function Lineage() {
     }
     else if (mode == 'cluster') {
       sim = getClusterSimulation();
-
+      interval = 1;
     }
 
     return [canvas, sim];
@@ -127,12 +126,12 @@ function Lineage() {
 
   function getClusterSimulation() {
     simulation
-      .force("charge", d3.forceManyBody().strength(-5))
+      .force("charge", d3.forceManyBody().strength(-50))
       .force("centering", d3.forceCenter(0,0))
-      .force("link", d3.forceLink([]).strength(-1))
-      .force("x", d3.forceX())
-      .force("y", d3.forceY())
-      .alphaTarget(1)
+      //.force("link", d3.forceLink([]).strength(-1000))
+      //.force("x", d3.forceX())
+      //.force("y", d3.forceY())
+      //.alphaTarget(0)
       .on("tick", clusterTicked);
 
     return simulation;
@@ -143,7 +142,7 @@ function Lineage() {
     simulation
       .force("charge", d3.forceManyBody().strength(-50))
       .force("centering", d3.forceCenter(0,0))
-      .force("link", d3.forceLink(links).distance(500).strength(0.5))
+      .force("link", d3.forceLink(links).distance(50).strength(0.5))
       .force("x", d3.forceX())
       .force("y", d3.forceY())
       .alphaTarget(1)
@@ -154,10 +153,10 @@ function Lineage() {
 
   function getTimelineSimulation() {
     simulation
-      .force("charge", d3.forceManyBody().strength(-5))
-      .force("link", d3.forceLink([]).strength(-1))
-      .force("y", d3.forceY())
-      .force("x", d3.forceX(0))
+      .force("charge", d3.forceManyBody().strength(-500))
+      .force("link", d3.forceLink(links).strength(-1))
+      .force("y", d3.forceY(0))
+      .force("x", d3.forceX())
       .alphaTarget(0.5)
       .on("tick", timeTicked);
 
@@ -212,6 +211,9 @@ function Lineage() {
       data.nodes.forEach(addRemoveNode);
       if (mode == 'tree') {
         data.links.forEach(addRemoveLink);
+      }
+      if (mode == 'timeline') {
+        data.links.forEach(addRemoveLink); 
       }
     }
 
@@ -342,8 +344,19 @@ function Lineage() {
     var k = 0.1 * simulation.alpha;
     users.forEach(function(o, i) {
       u = o.values[0];
-      u.y += (clusters[u.lastName].y - u.y) *0.08;
-      u.x += (clusters[u.lastName].x - u.x) *0.08;
+      //u.y += (clusters[u.lastName].y - u.y) *0.08;
+      //u.x += (clusters[u.lastName].x - u.x) *0.08;
+      if (u.color == "#FF0000"){
+        u.x += 0;
+      }
+      else if(u.color == "#4678c9"){
+        u.y -= 30;
+        u.x += 20;
+      }
+      else if(u.color == "lightgreen"){
+        u.y -= 30;
+        u.x -= 20;
+      }
     });
 
     users.forEach(function(user) {
@@ -360,9 +373,7 @@ function Lineage() {
     context.clearRect(0, 0, width, height);
     context.save();
     context.translate(width / 2, height / 2);
-
     links.forEach(drawLink);
-
     users.forEach(function(user) {
       context.beginPath();
       user.values.forEach(drawNode);
@@ -382,15 +393,42 @@ function Lineage() {
     for(i=0; i<users.length; i++) {
       d = users[i].values[0];
       scale = ((d.birthDate.substring(0,4) - 1750) / (2020 - 1750) - 0.5);
-      d.x += (width*scale - d.x) * TIMELINE_SPEED;
+      d.y += (width*scale - d.y) * TIMELINE_SPEED;
     }
-
+    /*
+    links.forEach(drawLink)
     users.forEach(function(user) {
       context.beginPath();
       user.values.forEach(drawNode);
       context.fillStyle = color(user.values[0].color);
       context.fill();
-    });
+    }); */
+        var TimelineX; // Waiting for data as time for each positoin. 
+        var timePosition = [];
+        var ids = [{}];
+    for (TimelineX = 0; TimelineX < 1300; TimelineX = TimelineX+10) { 
+        context.fillRect(TimelineX -600, 0 , 5, 5);
+        timePosition.push(TimelineX -600);
+    }
+    links.forEach(function(link){
+      for ( i in timePosition) {
+      if(link.time == timePosition[i]){
+        link.source.x = timePosition[i];
+        link.target.x = timePosition[i];        
+       link.target.y = 30;
+       drawNode(link.target);
+        link.source.y = -20;
+       drawNode(link.source);
+      context.globalCompositeOperation='destination-over';
+      context.beginPath();
+      context.moveTo(link.source.x, link.source.y);
+      context.lineWidth = 3;
+      context.strokeStyle = link.color;
+      context.lineTo(link.target.x, link.target.y);
+      context.stroke();
+      }}
+    })
+
 
     context.restore();
   }
@@ -446,6 +484,7 @@ function Lineage() {
     context.stroke();
   }
   var flag = 1;
+  var maxX=0, maxY=0;
   function drawNode(d) {
     // My Added Code To Insert The Images For Each Node. 
     //var img = document.getElementById('img');
@@ -463,20 +502,17 @@ function Lineage() {
     context.moveTo(d.x, d.y);
     context.fillStyle= img;
     context.arc(d.x, d.y, size*1.5 + 20, 0, 2 * Math.PI);
-*/
+*/ 
    context.save();
    context.beginPath();
-   context.arc(d.x, d.y, 35, 0, 2*Math.PI, true);
-   context.fillStyle = "green";
-
+   context.arc(d.x, d.y, 15, 0, 2*Math.PI, true);
    context.closePath();
    context.clip();
-
-   context.drawImage(img, d.x, d.y, 35, 35);
-
-   context.beginPath();
-   context.restore();
-
+   context.strokeStyle= d.color;
+   context.lineWidth=3;
+   context.drawImage(img, d.x-15, d.y-15, 30, 30); context.stroke();
+   context.beginPath(); context.restore();
+   d3.forceCenter(maxX, maxY);
 
   }
 
@@ -556,7 +592,6 @@ function Lineage() {
     forceRefresh = true;
     reinit(originalData);
   }
-
   lin.print = function() {
   //  console.log(links);
    // console.log(nodes);
