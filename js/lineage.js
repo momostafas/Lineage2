@@ -212,7 +212,7 @@ function Lineage() {
       if (mode == 'tree') {
         data.links.forEach(addRemoveLink);
       }
-      if (mode == 'timeline') {
+      if (mode == 'timeline' || mode == 'cluster') {
         data.links.forEach(addRemoveLink); 
       }
     }
@@ -365,8 +365,9 @@ function Lineage() {
       context.fillStyle = color(user.values[0].color);
       context.fill();
     });
-
-    context.restore();
+      context.globalCompositeOperation='destination-over';
+      links.forEach(drawLink);
+      context.restore();
   }
 
   function treeTicked() {
