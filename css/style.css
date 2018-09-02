@@ -74,6 +74,43 @@ svg {
   font-size: 36px;
   line-height:
 }
+#message {
+  position: absolute;
+  font-size: 25px;
+  background-color: #ffffff;
+  z-index: 5000000;
+}
+.arrow {
+  width: 12px;
+  height: 20px;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  top: 6px;
+  right: -1px;
+}
+
+.arrow .outer {
+  width: 0;
+  height: 0;
+  border-right: 20px solid #000000;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+ .arrow .inner {
+  width: 0;
+  height: 0;
+  border-right: 20px solid #ffffff;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  position: absolute;
+  top: 0;
+  left: 2px;
+}
 
 #timeNavigation {
   position: absolute;
@@ -172,3 +209,12 @@ canvas {
   top: 0;
   left: 0;
   z-index: 0;
+}
+
+.axis { font: 14px sans-serif; }
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}

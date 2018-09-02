@@ -54,6 +54,7 @@ function Lineage() {
   var yearIncrement = 0;
   var filters = $('#search').val();
   var searchRadius = 40;
+  var linkWidth = 20;
   var simulation = d3.forceSimulation();
   var g = null;
   var users = [];
@@ -165,14 +166,13 @@ function Lineage() {
 
   function mousemoved() {
     var a = this.parentNode, m = d3.mouse(this), d = simulation.find(m[0] - width / 2, m[1] - height / 2, searchRadius);
-    if (!d) {
+    if (!d || mode == 'timeline') {
       hideMemberDetails(); 
     }
     else {
       highlightNode(d, m);
     }
   }
-
   function dragsubject() {
     return simulation.find(d3.event.x - width / 2, d3.event.y - height / 2, searchRadius);
   }
@@ -338,6 +338,8 @@ function Lineage() {
 
   function clusterTicked() {
     context.clearRect(0, 0, width, height);
+    d3.selectAll('#message')
+        .style('display','none')
     context.save();
     context.translate(width / 2, height / 2);
 
@@ -373,6 +375,8 @@ function Lineage() {
   function treeTicked() {
     context.clearRect(0, 0, width, height);
     context.save();
+    d3.selectAll('#message')
+        .style('display','none')
     context.translate(width / 2, height / 2);
     links.forEach(drawLink);
     users.forEach(function(user) {
@@ -384,7 +388,7 @@ function Lineage() {
 
     context.restore();
   }
-
+  var TimelineExecuted = false;
   function timeTicked() {
 
     context.clearRect(0, 0, width, height);
@@ -407,28 +411,111 @@ function Lineage() {
         var TimelineX; // Waiting for data as time for each positoin. 
         var timePosition = [];
         var ids = [{}];
-    for (TimelineX = 0; TimelineX < 1300; TimelineX = TimelineX+10) { 
+        var width = window.width * 0.8;
+        var startDate = new Date(2018, 0, 1);
+        var endDate = new Date(2018, 0, 14);
+        var dates = []; 
+   /* for (TimelineX = 0; TimelineX < 1300; TimelineX = TimelineX+10) { 
         context.fillRect(TimelineX -600, 0 , 5, 5);
         timePosition.push(TimelineX -600);
+    } */
+    if (!TimelineExecuted){
+      // https://github.com/d3/d3-time-format/blob/master/README.md#locale_format
+      TimelineExecuted = true;
+      // Establish the desired formatting options using locale.format():
+      // https://github.com/d3/d3-time-format/blob/master/README.md#locale_format
+      var formatMillisecond = d3.timeFormat(".%L"),
+          formatSecond = d3.timeFormat(":%S"),
+          formatMinute = d3.timeFormat("%I:%M"),
+          formatHour = d3.timeFormat("%I %p"),
+          formatDay = d3.timeFormat("%a %d"),
+          formatWeek = d3.timeFormat("%b %d"),
+          formatMonth = d3.timeFormat("%B"),
+          formatYear = d3.timeFormat("%Y");
+
+      // Define filter conditions
+      function multiFormat(date) {
+        return (d3.timeSecond(date) < date ? formatMillisecond
+          : d3.timeMinute(date) < date ? formatSecond
+          : d3.timeHour(date) < date ? formatMinute
+          : d3.timeDay(date) < date ? formatHour
+          : d3.timeMonth(date) < date ? (d3.timeWeek(date) < date ? formatDay : formatWeek)
+          : d3.timeYear(date) < date ? formatMonth
+          : formatYear)(date);
+      }
+      for(i=0; i<15; i++) {
+        var day = new Date(2018,0,i);
+        dates.push(new Date(day));
+        xPositoin = i * width/14 + window.width * 0.1;
+        timePosition.push(xPositoin);
+      }
+      var x = d3.scaleTime()
+          .domain([startDate, endDate])
+          .range([0, width]);
+      // Use the custom scale
+      var xAxis = d3.axisBottom()
+          .scale(x)
+          .tickFormat(multiFormat);
+      var svg = d3.select("body").append("svg")
+          .attr("width", window.width)
+          .attr("height", window.height)
+        .append("g")
+          .attr("transform", "translate(" + window.width * 0.1 + "," + window.height/2 + ")");
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + "0" + ")")
+          .call(xAxis);
+
     }
-    links.forEach(function(link){
-      for ( i in timePosition) {
-      if(link.time == timePosition[i]){
-        link.source.x = timePosition[i];
-        link.target.x = timePosition[i];        
-       link.target.y = 30;
-       drawNode(link.target);
-        link.source.y = -20;
-       drawNode(link.source);
-      context.globalCompositeOperation='destination-over';
-      context.beginPath();
-      context.moveTo(link.source.x, link.source.y);
-      context.lineWidth = 3;
-      context.strokeStyle = link.color;
-      context.lineTo(link.target.x, link.target.y);
-      context.stroke();
-      }}
-    })
+            /*  for ( i in dates) {
+          if(link.time == dates[i]){
+            link.source.x = xPositoin;
+            link.target.x = xPositoin;        
+           link.target.y = 30;
+           drawNode(link.target);
+            link.source.y = -20;
+           drawNode(link.source);
+          context.globalCompositeOperation='destination-over';
+          context.beginPath();
+          context.moveTo(link.source.x, link.source.y);
+          context.lineWidth = 3;
+          context.strokeStyle = link.color;
+          context.lineTo(link.target.x, link.target.y);
+          context.stroke(); 
+          }}*/
+    //SHOW MESSAGE
+    for (i in links){
+      var link = links[i];
+            (function() {
+          document.onmousemove = handleMouseMove;
+          function handleMouseMove(event) {
+              var dot, eventDoc, doc, body, pageX, pageY;
+
+              event = event || window.event; // IE-ism
+
+              // Use event.pageX / event.pageY here
+              var mouseX = event.pageX - (window.width / 2);
+              var mouseY = event.pageY - (window.height / 2);              
+              if ( mouseY < 30 && mouseY > -20){
+                for (i in links){
+                  if (links[i].source.x - 3 <= mouseX && mouseX <= links[i].source.x + 3 || links[i].target.x - 3 <= mouseX && mouseX <= links[i].target.x + 3){
+                      console.log("ok");
+                         d3.selectAll('#message')
+                            .style('display', 'block')
+                            .style('top', event.pageY - 20)
+                            .style('left', event.pageX + 20);
+                          d3.select('#messageContent').html(links[i].message);
+                  }
+                }
+              }
+              else{
+                console.log("not ok");
+                   d3.selectAll('#message')
+                      .style('display', 'none')
+              }
+          }
+      })();
+    }
 
 
     context.restore();

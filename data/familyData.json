@@ -280,7 +280,8 @@
          "relation":"mother",
          "target":"yolobot",
          "color":"#4678c9",
-         "time":"-400",
+         "time":"2018-01-01",
+         "message": "message 1 pla pla pla pla pla pla pla",
          "count":{  
             "POSITIVE":0,
             "NEGATIVE":0,
@@ -298,7 +299,8 @@
          "relation":"mother",
          "target":"yolobot",
          "color":"#4678c9",
-         "time":"-300",
+         "time":"2018-01-02",
+         "message": "message 2 pla pla pla pla pla pla pla",
          "count":{  
             "POSITIVE":0,
             "NEGATIVE":0,
@@ -316,7 +318,8 @@
          "relation":"mother",
          "target":"yolobot",
          "color":"#4678c9",
-         "time":"-200",
+         "time":"2018-01-03",
+         "message": "message 3 pla pla pla pla pla pla pla",
          "count":{  
             "POSITIVE":0,
             "NEGATIVE":0,
@@ -334,7 +337,8 @@
          "relation":"mother",
          "target":"yolobot",
          "color":"#4678c9",
-         "time":"-150",
+         "time":"2018-01-04",
+         "message": "message 4 pla pla pla pla pla pla pla",
          "count":{  
             "POSITIVE":1,
             "NEGATIVE":1,
@@ -352,7 +356,8 @@
          "relation":"mother",
          "target":"C3zQumr5wpdNJb9c9",
          "color":"#4678c9",
-         "time":"0",
+         "time":"2018-01-05",
+         "message": "message 5 pla pla pla pla pla pla pla",
          "count":{  
             "POSITIVE":1,
             "NEGATIVE":1,
@@ -370,7 +375,8 @@
          "relation":"mother",
          "target":"CLiB4hDWjYkgN2Zav",
          "color":"lightgreen",
-         "time":"100",
+         "time":"2018-01-06",
+         "message": "message 6 pla pla pla pla pla pla pla",
          "count":{  
             "POSITIVE":1,
             "NEGATIVE":0,
@@ -388,7 +394,8 @@
          "relation":"mother",
          "target":"myJv9dmez3q7fuvJn",
          "color":"lightgreen",
-         "time":"200",
+         "time":"2018-01-07",
+         "message": "message 7 pla pla pla pla pla pla pla",
          "count":{  
             "POSITIVE":1,
             "NEGATIVE":0,
@@ -406,7 +413,8 @@
          "relation":"mother",
          "target":"HqfhhFFwhdbrJ4SE3",
          "color":"#FF0000",
-         "time":"300",
+         "time":"2018-01-08",
+         "message": "message 8 pla pla pla pla pla pla pla",
          "count":{  
             "POSITIVE":0,
             "NEGATIVE":1,
@@ -424,7 +432,8 @@
          "relation":"mother",
          "target":"yolobot",
          "color":"#4678c9",
-         "time":"400",
+         "time":"2018-01-09",
+         "message": "message 9 pla pla pla pla pla pla pla",
          "count":{  
             "POSITIVE":0,
             "NEGATIVE":0,
@@ -442,7 +451,8 @@
          "relation":"mother",
          "target":"GENERAL",
          "color":"#4678c9",
-         "time":"500",
+         "time":"2018-01-14",
+         "message": "message 10 pla pla pla pla pla pla pla",
          "count":{  
             "POSITIVE":0,
             "NEGATIVE":0,
